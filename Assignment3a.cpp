@@ -1,66 +1,118 @@
 #include<iostream>
 using namespace std;
 
-int main() {
+int main()
+{
     int firstOctet;
 
     cout << "Enter First Octet of IP Address: ";
     cin >> firstOctet;
 
-    if(firstOctet < 0 || firstOctet > 255) {
-        cout << "Invalid IP Address!";
+    if(firstOctet < 0 || firstOctet > 255)
+    {
+        cout << "\nInvalid IP Address!";
     }
-    else if(firstOctet >= 1 && firstOctet <= 126) {
-        cout << "Class A IP Address\n";
-        cout << "Address Range: 1.0.0.0 to 126.255.255.255\n";
-        cout << "Default Subnet Mask: 255.0.0.0 \n";
-        cout << "Number of Networks: 126\n";
-        cout << "Number of Hosts per Network: 16,777,214\n";
-        cout << "Reason: 2^24 - 2 = 16,777,214 usable hosts.\n";
-        cout << "-2 because one address is reserved for the Network Address\n";
-        cout << "and one address is reserved for the Broadcast Address.\n";
+
+    // Class A
+    else if(firstOctet >= 1 && firstOctet <= 126)
+    {
+        cout << "\n====================== CLASS A IP ADDRESS ======================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Class                : A\n";
+        cout << "First Octet Range    : 0 - 126\n";
+        cout << "Binary Prefix        : 0xxxxxxx\n";
+        cout << "IP Address Range     : 1.0.0.0 - 126.255.255.255\n";
+        cout << "Default Subnet Mask  : 255.0.0.0 (/8)\n";
+        cout << "Hosts per Network    : 2^24 - 2 = 16,777,214\n";
+        cout << "Number of Networks   : 2^7 = 128 (126 usable)\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Reason for -2:\n";
+        cout << "1. Network Address (all host bits = 0)\n";
+        cout << "2. Broadcast Address (all host bits = 1)\n";
+        cout << "===============================================================\n";
     }
-    else if(firstOctet == 127) {
-        cout << "Loopback Address\n";
-        cout << "Address Range: 127.0.0.0 to 127.255.255.255\n";
-        cout << "Loopback Address is a special IP address reserved for testing and diagnosing a computer's network software.\n";
-        cout << "The address 127.0.0.1 (localhost) allows a computer to communicate with itself.\n";
-        cout << "Subnet Mask: Not Applicable\n";
+
+    // Loopback
+    else if(firstOctet == 127)
+    {
+        cout << "\n====================== LOOPBACK ADDRESS ========================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Address Range        : 127.0.0.0 - 127.255.255.255\n";
+        cout << "Special Address      : 127.0.0.1 (localhost)\n";
+        cout << "Purpose              : Used by a computer to communicate with itself for testing..Loopback Address is a special IP address reserved for testing and diagnosing a computer's network software.\n";
+        cout << "Subnet Mask          : Not Applicable\n";
+        cout << "===============================================================\n";
     }
-    else if(firstOctet >= 128 && firstOctet <= 191) {
-        cout << "Class B IP Address\n";
-        cout << "Address Range: 128.0.0.0 to 191.255.255.255\n";
-        cout << "Default Subnet Mask: 255.255.0.0 \n";
-        cout << "Number of Networks: 16,384\n";
-        cout << "Number of Hosts per Network: 65,534\n";
-        cout << "Reason: 2^16 - 2 = 65,534 usable hosts.\n";
-        cout << "-2 because one address is reserved for the Network Address\n";
-        cout << "and one address is reserved for the Broadcast Address.\n";
+
+    // Class B
+    else if(firstOctet >= 128 && firstOctet <= 191)
+    {
+        cout << "\n====================== CLASS B IP ADDRESS ======================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Class                : B\n";
+        cout << "First Octet Range    : 128 - 191\n";
+        cout << "Binary Prefix        : 10xxxxxx\n";
+        cout << "IP Address Range     : 128.0.0.0 - 191.255.255.255\n";
+        cout << "Default Subnet Mask  : 255.255.0.0 (/16)\n";
+        cout << "Hosts per Network    : 2^16 - 2 = 65,534\n";
+        cout << "Number of Networks   : 2^14 = 16,384\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Reason for -2:\n";
+        cout << "1. Network Address (all host bits = 0)\n";
+        cout << "2. Broadcast Address (all host bits = 1)\n";
+        cout << "===============================================================\n";
     }
-    else if(firstOctet >= 192 && firstOctet <= 223) {
-        cout << "Class C IP Address\n";
-        cout << "Address Range: 192.0.0.0 to 223.255.255.255\n";
-        cout << "Default Subnet Mask: 255.255.255.0 \n";
-        cout << "Number of Networks: 2,097,152\n";
-        cout << "Number of Hosts per Network: 254\n";
-        cout << "Reason: 2^8 - 2 = 254 usable hosts.\n";
-        cout << "-2 because one address is reserved for the Network Address\n";
-        cout << "and one address is reserved for the Broadcast Address.\n";
+
+    // Class C
+    else if(firstOctet >= 192 && firstOctet <= 223)
+    {
+        cout << "\n====================== CLASS C IP ADDRESS ======================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Class                : C\n";
+        cout << "First Octet Range    : 192 - 223\n";
+        cout << "Binary Prefix        : 110xxxxx\n";
+        cout << "IP Address Range     : 192.0.0.0 - 223.255.255.255\n";
+        cout << "Default Subnet Mask  : 255.255.255.0 (/24)\n";
+        cout << "Hosts per Network    : 2^8 - 2 = 254\n";
+        cout << "Number of Networks   : 2^21 = 2,097,152\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Reason for -2:\n";
+        cout << "1. Network Address (all host bits = 0)\n";
+        cout << "2. Broadcast Address (all host bits = 1)\n";
+        cout << "===============================================================\n";
     }
-    else if(firstOctet >= 224 && firstOctet <= 239) {
-        cout << "Class D IP Address (Multicast)\n";
-        cout << "Address Range: 224.0.0.0 to 239.255.255.255\n";
-        cout << "Subnet Mask: Not Applicable\n";
+
+    // Class D
+    else if(firstOctet >= 224 && firstOctet <= 239)
+    {
+        cout << "\n====================== CLASS D IP ADDRESS ======================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Class                : D\n";
+        cout << "First Octet Range    : 224 - 239\n";
+        cout << "Binary Prefix        : 1110xxxx\n";
+        cout << "IP Address Range     : 224.0.0.0 - 239.255.255.255\n";
+        cout << "Purpose              : Multicasting\n";
+        cout << "Default Subnet Mask  : Not Applicable\n";
+        cout << "Hosts per Network    : Not Applicable\n";
+        cout << "Number of Networks   : Not Applicable\n";
+        cout << "===============================================================\n";
     }
-    else if(firstOctet >= 240 && firstOctet <= 255) {
-        cout << "Class E IP Address (Experimental)\n";
-        cout << "Address Range: 240.0.0.0 to 255.255.255.255\n";
-        cout << "Subnet Mask: Not Applicable\n";
-    }
-    else {
-        cout << "Invalid IP Address!";
+
+    // Class E
+    else
+    {
+        cout << "\n====================== CLASS E IP ADDRESS ======================\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "Class                : E\n";
+        cout << "First Octet Range    : 240 - 255\n";
+        cout << "Binary Prefix        : 1111xxxx\n";
+        cout << "IP Address Range     : 240.0.0.0 - 255.255.255.255\n";
+        cout << "Purpose              : Experimental / Research\n";
+        cout << "Default Subnet Mask  : Not Applicable\n";
+        cout << "Hosts per Network    : Not Applicable\n";
+        cout << "Number of Networks   : Not Applicable\n";
+        cout << "===============================================================\n";
     }
 
     return 0;
 }
-
